@@ -46,9 +46,29 @@
         }
     ],
     "post-processors": [
-        {
+        [{
             "type": "vagrant",
-            "output": "packer_arch_{{.Provider}}.box"
-        }
+            "keep_input_artifact": false
+        },
+        {
+            "type": "atlas",
+            "only": ["vmware-iso"],
+            "artifact": "obedmr/archlinux",
+            "artifact_type": "vagrant.box",
+            "metadata": {
+                "provider": "vmware_desktop",
+                "version": "2015.07.01"
+            }
+        },
+        {
+            "type": "atlas",
+            "only": ["virtualbox-iso"],
+            "artifact": "obedmr/archlinux",
+            "artifact_type": "vagrant.box",
+            "metadata": {
+                "provider": "virtualbox",
+                "version": "2015.07.01"
+            }
+        }]
     ]
 }
